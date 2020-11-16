@@ -10,13 +10,13 @@ using namespace std;
 //set up the console.   Don't modify this line!
 Console out;
 
-const int HEIGHT = 150, WIDTH = 150;
-void create_wall(int gameBoard[HEIGHT][WIDTH])
+void create_wall(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
 {
 
-    for(int width = 50; width < 100; width++)
+    for(int width = 20; width < NUM_BOARD_X - 20; width++)
     {
-        gameBoard[75][width] = SHALL_NOT_PASS;
+        const int MID_BOARD = MAX_BOARD_Y/2;
+        gameBoard[MID_BOARD][width] = SHALL_NOT_PASS;
     }
 
 }
@@ -43,7 +43,7 @@ int main()
 	Actor monster(MONSTER_CHAR, 70,20);
 
     // Declare the array that will hold the game board "map"
-    int gameBoard[HEIGHT][WIDTH] = {0};
+    int gameBoard[NUM_BOARD_Y][NUM_BOARD_X] = {0};
 
 
 /*
@@ -54,7 +54,7 @@ int main()
 */
     create_wall(gameBoard);
 
-    /* game map location */ = WINNER;
+    gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
   	
     // Call the function to print the game board
   	
