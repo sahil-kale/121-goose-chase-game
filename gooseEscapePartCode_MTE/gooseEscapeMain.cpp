@@ -10,6 +10,17 @@ using namespace std;
 //set up the console.   Don't modify this line!
 Console out;
 
+void create_wall(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
+{
+
+    for(int width = 20; width < NUM_BOARD_X - 20; width++)
+    {
+        const int MID_BOARD = MAX_BOARD_Y/2;
+        gameBoard[MID_BOARD][width] = SHALL_NOT_PASS;
+    }
+
+}
+
 int main()
 {
 	//Set up the window.  Don't edit these two lines
@@ -30,17 +41,20 @@ int main()
 	
 	//make the monster
 	Actor monster(MONSTER_CHAR, 70,20);
-	
+
     // Declare the array that will hold the game board "map"
-  	
+    int gameBoard[NUM_BOARD_Y][NUM_BOARD_X] = {0};
+
+
 /*
     Initiallize locations in the game board to have game features.  What if you
     have man things to add to the game board?  Should you use a loop?  Does it
     make sense to store this information in a file?  Should this code be a
     function as well?
 */
-    /* game map location */ = SHALL_NOT_PASS;
-    /* game map location */ = WINNER;
+    create_wall(gameBoard);
+
+    gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
   	
     // Call the function to print the game board
   	
