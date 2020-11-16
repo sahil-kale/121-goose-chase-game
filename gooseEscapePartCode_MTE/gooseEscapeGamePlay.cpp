@@ -30,7 +30,10 @@ y direction
 */
 
 // print the game board function
+void printGameBoard(Actor &Player)
 {
+	int x_location_on_board = Player.get_x();
+	int y_location_on_board = Player.get_y();
     terminal_put(x_location_on_board,y_location_on_board,WIN_CHAR);
 }
 
@@ -60,7 +63,7 @@ bool captured(Actor const & player, Actor const & monster)
     You could decide to learn about switch statements and use them here.
 */
 
-void movePlayer(int key, Actor & player, /* game board array and any other parameters */);
+void movePlayer(int key, Actor & player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_Y])
 {
     int yMove = 0, xMove = 0;
     if (key == TK_UP)
@@ -72,8 +75,11 @@ void movePlayer(int key, Actor & player, /* game board array and any other param
     else if (key == TK_RIGHT)
         xMove = 1;
         
+    int playerX = player.get_x();
+    int playerY = player.get_y();
+        
     if (player.can_move(xMove, yMove) 
-      && /*new location on game board */ != SHALL_NOT_PASS)
+      && gameBoard[playerY+yMove][playerX+xMove] != SHALL_NOT_PASS)
         player.update_location(xMove, yMove);
 }
 
