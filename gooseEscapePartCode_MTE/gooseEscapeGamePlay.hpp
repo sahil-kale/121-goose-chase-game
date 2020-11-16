@@ -35,6 +35,7 @@ const int WIN_CHAR = int('%'); //% sign, a special character used in the ancient
 */
 
 // print the game board function protype
+void printGameBoard(Actor &Player);
 
 /*
     Do something when the goose captures the player
@@ -57,7 +58,7 @@ bool captured(Actor const & player, Actor const & monster);
     You could decide to learn about switch statements and use them here.
 */
 
-void movePlayer(int key, Actor & player, /* game board array and any other parameters */);
+void movePlayer(int key, Actor & player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_Y]);
 
 /*
     What other functions do you need to make the game work?  What can you
