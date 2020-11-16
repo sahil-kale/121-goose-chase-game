@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-#include <BearLibTerminal.h>
+#include "BearLibTerminal_0.15.7\Include\C\BearLibTerminal.h"
 #include "gooseEscapeUtil.hpp"
 #include "gooseEscapeActors.hpp"
 #include "gooseEscapeConsole.hpp"

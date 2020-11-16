@@ -1,7 +1,7 @@
 #ifndef GOOSE_ESCAPE_ACTORS
 #define GOOSE_ESCAPE_ACTORS
 #include <cmath>
-#include <BearLibTerminal.h>
+#include "BearLibTerminal_0.15.7\Include\C\BearLibTerminal.h"
 #include "gooseEscapeUtil.hpp"
 
 /*

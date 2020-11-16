@@ -1,4 +1,4 @@
-#include <BearLibTerminal.h>
+#include "BearLibTerminal_0.15.7\Include\C\BearLibTerminal.h"
 #include <cmath>
 #include <iostream>
 using namespace std;
