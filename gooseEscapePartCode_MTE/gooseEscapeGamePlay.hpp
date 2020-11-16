@@ -58,7 +58,7 @@ bool captured(Actor const & player, Actor const & monster);
     You could decide to learn about switch statements and use them here.
 */
 
-void movePlayer(int key, Actor & player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_Y]);
+void movePlayer(int key, Actor & player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X]);
 
 /*
     What other functions do you need to make the game work?  What can you
