@@ -35,7 +35,7 @@ const int WIN_CHAR = int('%'); //% sign, a special character used in the ancient
 */
 
 // print the game board function protype
-void printGameBoard(Actor &Player);
+void printGameBoard(int xChar, int yChar);
 
 /*
     Do something when the goose captures the player
