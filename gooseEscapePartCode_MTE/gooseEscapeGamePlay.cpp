@@ -84,6 +84,14 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]
         player.update_location(xMove, yMove);
 }
 
+bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X])
+{
+    int playerX = player.get_x();
+    int playerY = player.get_y();
+
+    return (gameBoard[playerY][playerX] == WINNER);
+}
+
 /*
     What other functions do you need to make the game work?  What can you
     add to the basic functionality to make it more fun to play?
