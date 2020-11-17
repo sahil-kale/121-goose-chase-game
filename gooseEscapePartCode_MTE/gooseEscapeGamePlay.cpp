@@ -78,10 +78,15 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]
         
     int playerX = player.get_x();
     int playerY = player.get_y();
-        
+       
     if (player.can_move(xMove, yMove) 
       && gameBoard[playerY+yMove][playerX+xMove] != SHALL_NOT_PASS)
-        player.update_location(xMove, yMove);
+      {
+      	terminal_put(playerX,playerY, BLANK_CHAR);
+      	player.update_location(xMove, yMove);
+      	//terminal_put(playerX,playerY, BLANK_CHAR);
+	  }
+        
 }
 
 bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X])

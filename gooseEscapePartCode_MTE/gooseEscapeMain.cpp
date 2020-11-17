@@ -72,7 +72,7 @@ int main()
             {
                 charToPut = WIN_CHAR;
             }
-            printGameBoard(row, col, charToPut);
+            printGameBoard(col, row, charToPut);
         }
     }
   	

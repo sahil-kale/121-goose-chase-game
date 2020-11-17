@@ -78,13 +78,11 @@ class Actor
     {
         if (can_move(delta_x, delta_y))
         {
-            int currentX = this->location_x;
-            int currentY = this->location_y;
             terminal_clear_area(location_x, location_y, 1, 1);
             location_x += delta_x;
             location_y += delta_y;
             put_actor();
-            terminal_put(currentX,currentY, BLANK_CHAR);
+            
         }
     }
     
