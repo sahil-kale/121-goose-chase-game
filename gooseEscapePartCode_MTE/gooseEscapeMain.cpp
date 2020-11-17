@@ -55,7 +55,9 @@ int main()
     create_wall(gameBoard);
 
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
-  	
+
+
+    
     // Call the function to print the game board
     for(int row = 0; row < MAX_BOARD_Y; row++)
     {
@@ -83,7 +85,7 @@ int main()
     int keyEntered = TK_A;  // can be any valid value that is not ESCAPE or CLOSE
     
     while(keyEntered != TK_ESCAPE && keyEntered != TK_CLOSE 
-                    && !captured(player,monster) && /* has not won yet */)
+                    && !captured(player,monster) && !won(player,gameBoard))
 	{
 	    // get player key press
 	    keyEntered = terminal_read();
@@ -104,7 +106,14 @@ int main()
       	//once we're out of the loop, the game is over
         out.writeLine("Game has ended");
     
-        // output why:  did the goose get us, or did we get to the win location?
+        if(won(player, gameBoard))
+            {
+            out.writeLine("Player has escaped!!!");
+            }
+        else
+            {
+            out.writeLine("Player has been captured!");
+            }
 	
     	// Wait until user closes the window
         while (terminal_read() != TK_CLOSE);
