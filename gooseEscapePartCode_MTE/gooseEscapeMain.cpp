@@ -59,9 +59,9 @@ int main()
 
     
     // Call the function to print the game board
-    for(int row = 0; row < MAX_BOARD_Y; row++)
+    for(int row = 0; row <= MAX_BOARD_Y; row++)
     {
-        for(int col = 0; col < MAX_BOARD_X; col++)
+        for(int col = 0; col <= MAX_BOARD_X; col++)
         {
             int charToPut = BLANK_CHAR;
             if(gameBoard[row][col] == SHALL_NOT_PASS)

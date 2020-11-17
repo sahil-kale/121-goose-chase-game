@@ -84,7 +84,7 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]
       {
       	terminal_put(playerX,playerY, BLANK_CHAR);
       	player.update_location(xMove, yMove);
-      	//terminal_put(playerX,playerY, BLANK_CHAR);
+      	terminal_put(playerX,playerY, BLANK_CHAR);
 	  }
         
 }
