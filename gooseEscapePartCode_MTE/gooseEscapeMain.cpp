@@ -63,7 +63,16 @@ int main()
     {
         for(int col = 0; col < MAX_BOARD_X; col++)
         {
-            printGameBoard(row, col);
+            int charToPut = BLANK_CHAR;
+            if(gameBoard[row][col] == SHALL_NOT_PASS)
+            {
+                charToPut = WALL_CHAR;
+            }
+            else if(gameBoard[row][col] == WINNER)
+            {
+                charToPut = WIN_CHAR;
+            }
+            printGameBoard(row, col, charToPut);
         }
     }
   	
