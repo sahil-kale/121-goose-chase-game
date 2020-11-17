@@ -66,5 +66,6 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_
     add to the basic functionality to make it more fun to play?
 */
 
+bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X]);
 
 #endif
