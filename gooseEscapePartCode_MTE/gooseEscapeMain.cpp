@@ -57,6 +57,13 @@ int main()
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
   	
     // Call the function to print the game board
+    for(int row = 0; row < MAX_BOARD_Y; row++)
+    {
+        for(int col = 0; col < MAX_BOARD_X; col++)
+        {
+            printGameBoard(row, col);
+        }
+    }
   	
 	// Printing the instructions
     out.writeLine("Escape the Goose! " + monster.get_location_string());
@@ -84,7 +91,7 @@ int main()
         if (keyEntered != TK_ESCAPE && keyEntered != TK_CLOSE)
         {
             // move the player, you can modify this function
-    	    movePlayer(keyEntered,player,/* game board array and maybe other parameters*/);
+    	    movePlayer(keyEntered,player,gameBoard);
 
             // call the goose's chase function
             

@@ -30,10 +30,10 @@ y direction
 */
 
 // print the game board function
-void printGameBoard(Actor &Player)
+void printGameBoard(int xChar, int yChar)
 {
-	int x_location_on_board = Player.get_x();
-	int y_location_on_board = Player.get_y();
+	int x_location_on_board = xChar;
+	int y_location_on_board = yChar;
     terminal_put(x_location_on_board,y_location_on_board,WIN_CHAR);
 }
 
