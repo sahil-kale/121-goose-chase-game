@@ -35,6 +35,7 @@ void printGameBoard(int xChar, int yChar, int charToPut)
 	int x_location_on_board = xChar;
 	int y_location_on_board = yChar;
     terminal_put(x_location_on_board,y_location_on_board, charToPut);
+
 }
 
 /*
