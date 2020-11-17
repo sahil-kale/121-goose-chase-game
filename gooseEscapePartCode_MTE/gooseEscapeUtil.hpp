@@ -1,3 +1,5 @@
+/***GOOSEESCAPEUTIL FILE BEGINNING!!***/
+
 //STUDENTS: Be very careful if you decide to change these values
 
 #ifndef GOOSE_UTIL

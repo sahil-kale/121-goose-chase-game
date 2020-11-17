@@ -1,3 +1,5 @@
+/***GOOSE ESCAPE GAME PLAY CPP FILE BEGINNING!!***/
+
 #include <iostream>
 #include <cmath>
 using namespace std;

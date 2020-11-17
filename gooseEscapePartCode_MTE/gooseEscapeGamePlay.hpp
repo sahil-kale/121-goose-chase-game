@@ -1,3 +1,5 @@
+/***GOOSE ESCAPE GAME PLAY HEADER FILE BEGINNING!!***/
+
 #ifndef GOOSE_ESCAPE_GAMEPLAY
 #define GOOSE_ESCAPE_GAMEPLAY
 #include "gooseEscapeUtil.hpp"
