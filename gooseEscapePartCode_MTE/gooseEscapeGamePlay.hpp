@@ -68,4 +68,6 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_
 
 bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X]);
 
+void chasePlayer(Actor & monster, Actor const & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]);
+
 #endif
