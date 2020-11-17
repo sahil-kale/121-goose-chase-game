@@ -98,6 +98,76 @@ bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X])
     return (gameBoard[playerY][playerX] == WINNER);
 }
 
+void chasePlayer(Actor & monster, Actor const & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
+{
+    int playerX = player.get_x();
+    int playerY = player.get_y();
+
+    int monsterX = monster.get_x();
+    int monsterY = monster.get_y();
+
+    int deltaX = 0;
+    int deltaY = 0;
+    // Moves the monster one unit in both X and Y towards player
+    // If there is a wall in the way the monster will jump over unless wall is more then 1 unit thick
+
+    //Player is Right of Monster
+    if(playerX > monsterX)
+    {
+        deltaX++;
+        if(gameBoard[monsterY][monsterX + 1] == SHALL_NOT_PASS && gameBoard[monsterY][monsterX + 2] != SHALL_NOT_PASS)
+        {
+            deltaX++;
+        }
+        else if(gameBoard[monsterY][monsterX + 1] == SHALL_NOT_PASS && gameBoard[monsterY][monsterX + 2] == SHALL_NOT_PASS)
+        {
+            deltaX--;
+        }
+    }
+    //Player is Left of Monster
+    else if(playerX < monsterX)
+    {
+        deltaX--;
+        if(gameBoard[monsterY][monsterX - 1] == SHALL_NOT_PASS && gameBoard[monsterY][monsterX - 2] != SHALL_NOT_PASS)
+        {
+            deltaX--;
+        }
+        else if(gameBoard[monsterY][monsterX - 1] == SHALL_NOT_PASS && gameBoard[monsterY][monsterX - 2] == SHALL_NOT_PASS)
+        {
+            deltaX++;
+        }
+    }
+    //Player is Below Monster
+    if(playerY > monsterY)
+    {
+        deltaY++;
+        if(gameBoard[monsterY + 1][monsterX] == SHALL_NOT_PASS && gameBoard[monsterY + 2][monsterX] != SHALL_NOT_PASS)
+        {
+            deltaY++;
+        }
+        else if(gameBoard[monsterY + 1][monsterX] == SHALL_NOT_PASS && gameBoard[monsterY + 2][monsterX] == SHALL_NOT_PASS)
+        {
+            deltaY--;
+        }
+
+    }
+    //Player is Above Monster
+    else if(playerY < monsterY)
+    {
+        deltaY--;
+        if(gameBoard[monsterY - 1][monsterX] == SHALL_NOT_PASS && gameBoard[monsterY - 2][monsterX] != SHALL_NOT_PASS)
+        {
+            deltaY--;
+        }
+        else if(gameBoard[monsterY - 1][monsterX] == SHALL_NOT_PASS && gameBoard[monsterY - 2][monsterX] == SHALL_NOT_PASS)
+        {
+            deltaY++;
+        }
+    }
+    monster.update_location(deltaX, deltaY);
+}
+
+
 /*
     What other functions do you need to make the game work?  What can you
     add to the basic functionality to make it more fun to play?

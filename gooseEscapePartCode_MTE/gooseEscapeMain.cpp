@@ -57,7 +57,7 @@ int main()
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
 
 
-    
+
     // Call the function to print the game board
     for(int row = 0; row <= MAX_BOARD_Y; row++)
     {
@@ -105,6 +105,7 @@ int main()
     	    movePlayer(keyEntered,player,gameBoard);
 
             // call the goose's chase function
+            chasePlayer(monster, player, gameBoard);
             
             // call other functions to do stuff?	    
         }
@@ -117,7 +118,7 @@ int main()
     
         if(won(player, gameBoard))
             {
-            out.writeLine("Player has escaped!!!");
+            out.writeLine("Player has escaped!");
             }
         else
             {
