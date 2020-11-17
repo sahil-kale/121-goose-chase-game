@@ -82,6 +82,7 @@ class Actor
             location_x += delta_x;
             location_y += delta_y;
             put_actor();
+            
         }
     }
     
