@@ -10,14 +10,25 @@ using namespace std;
 //set up the console.   Don't modify this line!
 Console out;
 
-void create_wall(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
+void create_walls(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
 {
-
-    for(int width = 20; width < NUM_BOARD_X - 20; width++)
+    // Creates walls at predetermined locations
+    const int MID_BOARD_Y = MAX_BOARD_Y/2, MID_BOARD_X = MAX_BOARD_X/2;
+    for(int width = 21; width < NUM_BOARD_X - 20; width++)
     {
-        const int MID_BOARD = MAX_BOARD_Y/2;
-        gameBoard[MID_BOARD][width] = SHALL_NOT_PASS;
+        gameBoard[MID_BOARD_Y + 2][width] = SHALL_NOT_PASS;
     }
+
+    for(int height = 0; height < 4; height++)
+    {
+        gameBoard[height + 3][MID_BOARD_X - 10] = SHALL_NOT_PASS;
+        gameBoard[height + 3][MID_BOARD_X + 10] = SHALL_NOT_PASS;
+        
+        gameBoard[height + 14][MID_BOARD_X - 25] = SHALL_NOT_PASS;
+        gameBoard[height + 14][MID_BOARD_X + 27] = SHALL_NOT_PASS;
+    }
+    
+    
 
 }
 
@@ -37,10 +48,10 @@ int main()
 */
  	
     //make the player
-	Actor player(PLAYER_CHAR, 10,10);  // you probably don't want to start in the same place each time
+	Actor player(PLAYER_CHAR, 39,5);  // you probably don't want to start in the same place each time
 	
 	//make the monster
-	Actor monster(MONSTER_CHAR, 70,20);
+	Actor monster(MONSTER_CHAR, 39,22);
 
     // Declare the array that will hold the game board "map"
     int gameBoard[NUM_BOARD_Y][NUM_BOARD_X] = {0};
@@ -52,12 +63,12 @@ int main()
     make sense to store this information in a file?  Should this code be a
     function as well?
 */
-    create_wall(gameBoard);
+    create_walls(gameBoard);
 
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
 
 
-
+    
     // Call the function to print the game board
     for(int row = 0; row <= MAX_BOARD_Y; row++)
     {
@@ -105,7 +116,6 @@ int main()
     	    movePlayer(keyEntered,player,gameBoard);
 
             // call the goose's chase function
-            chasePlayer(monster, player, gameBoard);
             
             // call other functions to do stuff?	    
         }
@@ -118,7 +128,7 @@ int main()
     
         if(won(player, gameBoard))
             {
-            out.writeLine("Player has escaped!");
+            out.writeLine("Player has escaped!!!");
             }
         else
             {
