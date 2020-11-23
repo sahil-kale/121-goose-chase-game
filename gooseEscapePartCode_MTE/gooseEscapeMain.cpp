@@ -52,6 +52,7 @@ int main()
 	
 	//make the monster
 	Actor monster(MONSTER_CHAR, 39,22);
+	terminal_refresh();
 
     // Declare the array that will hold the game board "map"
     int gameBoard[NUM_BOARD_Y][NUM_BOARD_X] = {0};
