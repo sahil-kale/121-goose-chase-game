@@ -6,6 +6,10 @@ using namespace std;
 #include "gooseEscapeActors.hpp"
 #include "gooseEscapeConsole.hpp"
 #include "gooseEscapeGamePlay.hpp"
+#include "point.hpp"
+
+//Static variables to store teleporter things:
+static int teleportX1 = 0, teleportX2 = 0, teleportY1 = 0, teleportY2 = 0;
 
 extern Console out;
 /*
@@ -36,6 +40,14 @@ void printGameBoard(int xChar, int yChar, int charToPut)
 	int y_location_on_board = yChar;
     terminal_put(x_location_on_board,y_location_on_board, charToPut);
 
+}
+
+void sendGameBoardCoordinates(int teleX1, int teleY1, int teleX2, int teleY2)
+{
+    teleportX1 = teleX1;
+    teleportY1 = teleY1;
+    teleportX2 = teleX2;
+    teleportY2 = teleY2;
 }
 
 /*
@@ -81,13 +93,49 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]
        
     if (player.can_move(xMove, yMove) 
       && gameBoard[playerY+yMove][playerX+xMove] != SHALL_NOT_PASS)
-      {	
-      	player.update_location(xMove, yMove);
-      	terminal_put(playerX,playerY, BLANK_CHAR);
-      	terminal_refresh();
-      	//terminal_put(player.get_x(),player.get_y(), BLANK_CHAR);
+      {
+        //if(isTeleportable)
+        //{
+        //    teleportActor(player);
+        //}
+        //else
+        //{
+            updatePlayerLocation(player, xMove, yMove);
+        //}
+        
 	  }
         
+}
+
+void updatePlayerLocation(Actor &player, int xMove, int yMove)
+{
+    int playerX = player.get_x();
+    int playerY = player.get_y();
+    player.update_location(xMove, yMove);
+    terminal_put(playerX,playerY, BLANK_CHAR);
+    terminal_refresh();
+}
+
+bool isTeleportable(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X], Actor &player)
+{
+    return gameBoard[player.get_y()][player.get_x()] == TELEPORT;
+}
+
+void teleportActor(Actor &player)
+{
+    int playerX = player.get_x();
+    int playerY = player.get_y();
+
+    if(playerX == teleportX1)
+    {
+        player.setLocation(teleportX2, teleportY2);
+    }
+    else
+    {
+        player.setLocation(teleportX1, teleportY1);
+    }
+
+    updatePlayerLocation(player, 0, 0);
 }
 
 bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X])

@@ -56,7 +56,12 @@ int main()
 
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
 
+    int teleX1 = 7, teleY1 = 4, teleX2 = 22, teleY2 = 15;
 
+    gameBoard[teleX1][teleY1] = TELEPORT;
+    gameBoard[teleX2][teleY2] = TELEPORT;
+
+    sendGameBoardCoordinates(teleX1, teleY1, teleX2, teleY2);
 
     // Call the function to print the game board
     for(int row = 0; row <= MAX_BOARD_Y; row++)
