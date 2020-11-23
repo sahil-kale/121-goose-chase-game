@@ -10,6 +10,8 @@ using namespace std;
 //set up the console.   Don't modify this line!
 Console out;
 
+
+
 void create_wall(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
 {
 
@@ -56,10 +58,10 @@ int main()
 
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
 
-    int teleX1 = 7, teleY1 = 4, teleX2 = 22, teleY2 = 15;
+    int teleX1 = 7, teleY1 = 4, teleX2 = 7, teleY2 = 15;
 
-    gameBoard[teleX1][teleY1] = TELEPORT;
-    gameBoard[teleX2][teleY2] = TELEPORT;
+    gameBoard[teleY1][teleX1] = TELEPORT;
+    gameBoard[teleY2][teleX2] = TELEPORT;
 
     sendGameBoardCoordinates(teleX1, teleY1, teleX2, teleY2);
 
@@ -77,6 +79,10 @@ int main()
             {
                 charToPut = WIN_CHAR;
             }
+            else if(gameBoard[row][col] == TELEPORT)
+            {
+                charToPut = TELEPORT_CHAR;
+            }
             printGameBoard(col, row, charToPut);
         }
     }
@@ -86,6 +92,7 @@ int main()
 	out.writeLine("Use the arrow keys to move");
 	out.writeLine("If the goose catches you, you lose!");
 	out.writeLine("Be careful! Sometimes the goose can jump through walls!");
+    player.put_actor();
 
 /*
     This is the main game loop.  It continues to let the player give input

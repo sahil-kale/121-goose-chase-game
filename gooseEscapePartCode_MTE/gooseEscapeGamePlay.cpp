@@ -6,10 +6,10 @@ using namespace std;
 #include "gooseEscapeActors.hpp"
 #include "gooseEscapeConsole.hpp"
 #include "gooseEscapeGamePlay.hpp"
-#include "point.hpp"
 
-//Static variables to store teleporter things:
+//Static variables to store teleporter things and keeps things clean:
 static int teleportX1 = 0, teleportX2 = 0, teleportY1 = 0, teleportY2 = 0;
+static bool hasJustTeleported = false; //Makes sure you don't teleport twice
 
 extern Console out;
 /*
@@ -78,6 +78,7 @@ bool captured(Actor const & player, Actor const & monster)
 
 void movePlayer(int key, Actor & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
 {
+    //Inbuilt function
     int yMove = 0, xMove = 0;
     if (key == TK_UP)
         yMove = -1;
@@ -94,21 +95,28 @@ void movePlayer(int key, Actor & player, int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]
     if (player.can_move(xMove, yMove) 
       && gameBoard[playerY+yMove][playerX+xMove] != SHALL_NOT_PASS)
       {
-        //if(isTeleportable)
-        //{
-        //    teleportActor(player);
-        //}
-        //else
-        //{
+        //Checks if the player can teleport
+        if(isTeleportable(gameBoard, player) && !hasJustTeleported)
+        {
+            teleportActor(player);
+            hasJustTeleported = true;
+        }
+        else
+        {
+            hasJustTeleported = false;
             updatePlayerLocation(player, xMove, yMove);
-        //}
+            
+        }
         
 	  }
+
+      place_teleporter(); //Done to keep the teleporters on screen
         
 }
 
 void updatePlayerLocation(Actor &player, int xMove, int yMove)
 {
+	
     int playerX = player.get_x();
     int playerY = player.get_y();
     player.update_location(xMove, yMove);
@@ -118,7 +126,7 @@ void updatePlayerLocation(Actor &player, int xMove, int yMove)
 
 bool isTeleportable(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X], Actor &player)
 {
-    return gameBoard[player.get_y()][player.get_x()] == TELEPORT;
+    return gameBoard[player.get_y()][player.get_x()] == TELEPORT; //Checks the gameboard for the teleport string
 }
 
 void teleportActor(Actor &player)
@@ -126,16 +134,29 @@ void teleportActor(Actor &player)
     int playerX = player.get_x();
     int playerY = player.get_y();
 
-    if(playerX == teleportX1)
+    int chosenX = 0, chosenY = 0;
+    if(playerX == teleportX1 && playerY == teleportY1)
     {
-        player.setLocation(teleportX2, teleportY2);
+        chosenX = teleportX2;
+        chosenY = teleportY2;
     }
     else
     {
-        player.setLocation(teleportX1, teleportY1);
+        chosenX = teleportX1;
+        chosenY = teleportY1;
     }
+    
+    player.setLocation(chosenX, chosenY);
 
     updatePlayerLocation(player, 0, 0);
+    terminal_refresh();
+}
+
+void place_teleporter()
+{
+    terminal_put(teleportX1, teleportY1, TELEPORT_CHAR);
+    terminal_put(teleportX2, teleportY2, TELEPORT_CHAR);
+    terminal_refresh();
 }
 
 bool won(Actor &player, int gameBoard[NUM_SCREEN_Y][NUM_SCREEN_X])
@@ -153,6 +174,7 @@ void chasePlayer(Actor & monster, Actor const & player, int gameBoard[NUM_BOARD_
 
     int monsterX = monster.get_x();
     int monsterY = monster.get_y();
+    
 
     int deltaX = 0;
     int deltaY = 0;
@@ -213,6 +235,8 @@ void chasePlayer(Actor & monster, Actor const & player, int gameBoard[NUM_BOARD_
         }
     }
     monster.update_location(deltaX, deltaY);
+    terminal_put(monsterX,monsterY, BLANK_CHAR);
+    terminal_refresh();
 }
 
 
