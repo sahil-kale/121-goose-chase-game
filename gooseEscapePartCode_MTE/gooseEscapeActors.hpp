@@ -91,6 +91,12 @@ class Actor
         terminal_put(location_x, location_y, actorChar);
         terminal_refresh();
     }
+
+    void setLocation(int x, int y)
+    {
+        this->location_x = x;
+        this->location_y = y;
+    }
     
 };
 #endif
