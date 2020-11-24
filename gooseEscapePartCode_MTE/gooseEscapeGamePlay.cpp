@@ -175,11 +175,11 @@ void chasePlayer(Actor & monster, Actor const & player, int gameBoard[NUM_BOARD_
     int monsterX = monster.get_x();
     int monsterY = monster.get_y();
 
-    if(!monster.get_buffer()){
-        monster.set_buffer(true);
+    // Check move buffer for monster
+    if(monster.get_buffer() > 0){
+        monster.increment_buffer();
         return;
     }
-    
 
     int deltaX = 0;
     int deltaY = 0;
@@ -240,7 +240,7 @@ void chasePlayer(Actor & monster, Actor const & player, int gameBoard[NUM_BOARD_
         }
     }
     monster.update_location(deltaX, deltaY);
-    monster.set_buffer(false);
+    monster.increment_buffer();
     terminal_put(monsterX,monsterY, BLANK_CHAR);
     terminal_refresh();
 }

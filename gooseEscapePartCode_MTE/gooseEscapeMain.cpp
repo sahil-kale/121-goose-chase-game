@@ -46,10 +46,10 @@ int main()
 */
  	
     //make the player
-	Actor player(PLAYER_CHAR, 39,5, true);  // you probably don't want to start in the same place each time
+	Actor player(PLAYER_CHAR, 39,5, 0, 0);  // you probably don't want to start in the same place each time
 	
 	//make the monster
-	Actor monster(MONSTER_CHAR, 39,19, true);
+	Actor monster(MONSTER_CHAR, 39,19, 0, 1);
 	terminal_refresh();
 
     // Declare the array that will hold the game board "map"

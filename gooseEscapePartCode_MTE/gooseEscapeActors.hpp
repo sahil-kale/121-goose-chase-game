@@ -22,7 +22,9 @@ class Actor
   private:
     int actorChar;      
     int location_x, location_y;
-    bool move_buffer;
+    // Move buffer to allow for control over actors speed
+    int move_buffer;
+    int max_buffer;
 
   public:
     Actor()
@@ -30,16 +32,18 @@ class Actor
         actorChar = int('A');
         location_x = MIN_SCREEN_X;
         location_y = MIN_SCREEN_Y;
-        move_buffer = true;
+        move_buffer = 0;
+        max_buffer = 0;
         put_actor();
     }
 
-    Actor(char initPlayerChar, int x0, int y0, bool buffer_state)
+    Actor(char initPlayerChar, int x0, int y0, int buffer_state, int speed)
     {
         change_char(initPlayerChar);
         location_x = MIN_SCREEN_X;
         location_y = MIN_SCREEN_Y;
         move_buffer = buffer_state;
+        max_buffer = speed;
         update_location(x0,y0);
     }
     
@@ -53,7 +57,8 @@ class Actor
         return location_y;
     }
 
-    bool get_buffer() const
+    // Returns buffer
+    int get_buffer() const
     {
         return move_buffer;
     }
@@ -73,9 +78,19 @@ class Actor
         actorChar = min(int('~'),max(int(new_actor_char),int(' ')));
     }
 
-    void set_buffer(bool buffer_state)
+    void set_buffer(int buffer_state)
     {
         move_buffer = buffer_state;
+    }
+
+    // Increments buffer like a timer and resets at designated "speed"
+    void increment_buffer()
+    {
+        move_buffer++;
+        if(move_buffer > max_buffer)
+        {
+            move_buffer = 0;
+        }
     }
 
     bool can_move(int delta_x, int delta_y) const

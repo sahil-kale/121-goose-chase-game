@@ -5,11 +5,11 @@ TopLine=60
 LeftChar=1
 [Editors]
 Order=0,4,5,1
-Focused=-1
+Focused=0
 [Editor_0]
-CursorCol=3
+CursorCol=1
 CursorRow=54
-TopLine=49
+TopLine=1
 LeftChar=1
 [Editor_2]
 CursorCol=2
@@ -27,9 +27,9 @@ CursorRow=48
 TopLine=17
 LeftChar=1
 [Editor_5]
-CursorCol=68
+CursorCol=22
 CursorRow=83
-TopLine=67
+TopLine=1
 LeftChar=1
 [Editor_6]
 CursorCol=41
