@@ -28,7 +28,7 @@ const int TELEPORT = 3;
 //display characters
 const int PLAYER_CHAR = int('@');
 const int MONSTER_CHAR = int('G');
-const int WALL_CHAR = int('o');
+const int WALL_CHAR = int('#');
 const int WIN_CHAR = int('%'); //% sign, a special character used in the ancient game "Rogue"
 const int BLANK_CHAR = int('-');
 const int TELEPORT_CHAR = int('*');

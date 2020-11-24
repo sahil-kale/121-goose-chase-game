@@ -66,7 +66,7 @@ int main()
 
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
 
-    int teleX1 = 7, teleY1 = 4, teleX2 = 7, teleY2 = 15;
+    int teleX1 = 7, teleY1 = 4, teleX2 = 37, teleY2 = 15;
 
     gameBoard[teleY1][teleX1] = TELEPORT;
     gameBoard[teleY2][teleX2] = TELEPORT;
