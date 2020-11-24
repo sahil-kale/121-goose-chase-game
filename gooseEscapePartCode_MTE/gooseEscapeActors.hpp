@@ -32,8 +32,8 @@ class Actor
         actorChar = int('A');
         location_x = MIN_SCREEN_X;
         location_y = MIN_SCREEN_Y;
-        move_buffer = 0;
-        max_buffer = 0;
+        set_buffer(0);
+        set_max(0);
         put_actor();
     }
 
@@ -42,8 +42,8 @@ class Actor
         change_char(initPlayerChar);
         location_x = MIN_SCREEN_X;
         location_y = MIN_SCREEN_Y;
-        move_buffer = buffer_state;
-        max_buffer = speed;
+        set_buffer(buffer_state);
+        set_max(speed);
         update_location(x0,y0);
     }
     
@@ -80,7 +80,20 @@ class Actor
 
     void set_buffer(int buffer_state)
     {
+        if(buffer_state < 0)
+        {
+            buffer_state = 0;
+        }
         move_buffer = buffer_state;
+    }
+
+    void set_max(int max)
+    {
+        if(max < 0)
+        {
+            max = 0;
+        }
+        max_buffer = max;
     }
 
     // Increments buffer like a timer and resets at designated "speed"
@@ -89,7 +102,7 @@ class Actor
         move_buffer++;
         if(move_buffer > max_buffer)
         {
-            move_buffer = 0;
+            set_buffer(0);
         }
     }
 
