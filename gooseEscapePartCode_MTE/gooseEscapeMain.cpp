@@ -66,27 +66,8 @@ int main()
     sendGameBoardCoordinates(teleX1, teleY1, teleX2, teleY2);
 
     // Call the function to print the game board
-    for(int row = 0; row <= MAX_BOARD_Y; row++)
-    {
-        for(int col = 0; col <= MAX_BOARD_X; col++)
-        {
-            int charToPut = BLANK_CHAR;
-            if(gameBoard[row][col] == SHALL_NOT_PASS)
-            {
-                charToPut = WALL_CHAR;
-            }
-            else if(gameBoard[row][col] == WINNER)
-            {
-                charToPut = WIN_CHAR;
-            }
-            else if(gameBoard[row][col] == TELEPORT)
-            {
-                charToPut = TELEPORT_CHAR;
-            }
-            printGameBoard(col, row, charToPut);
-        }
-    }
-  	
+    printGameBoard(gameBoard);
+    
 	// Printing the instructions
     out.writeLine("Escape the Goose! " + monster.get_location_string());
 	out.writeLine("Use the arrow keys to move");
