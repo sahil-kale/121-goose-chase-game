@@ -60,6 +60,7 @@ void printGameBoard(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
 
 }
 
+//Updates the private static variables to store the teleporter locations
 void sendGameBoardCoordinates(int teleX1, int teleY1, int teleX2, int teleY2)
 {
     teleportX1 = teleX1;
