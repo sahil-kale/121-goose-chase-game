@@ -168,6 +168,7 @@ void teleportActor(Actor &player)
 
     updatePlayerLocation(player, 0, 0);
     terminal_refresh();
+    player.put_actor();
 }
 
 void place_teleporter()
