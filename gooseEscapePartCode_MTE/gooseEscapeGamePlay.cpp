@@ -141,7 +141,8 @@ void updatePlayerLocation(Actor &player, int xMove, int yMove)
     int playerX = player.get_x();
     int playerY = player.get_y();
     player.update_location(xMove, yMove);
-    terminal_put(playerX,playerY, BLANK_CHAR);
+    terminal_put(playerX,playerY, BLANK_CHAR); //This is done to keep the blank char on screen 
+	//instead of the actor leaving a trail of nothing
     terminal_refresh();
 }
 
