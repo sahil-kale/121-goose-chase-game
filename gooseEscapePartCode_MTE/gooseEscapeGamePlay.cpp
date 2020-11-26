@@ -34,11 +34,29 @@ y direction
 */
 
 // print the game board function
-void printGameBoard(int xChar, int yChar, int charToPut)
+void printGameBoard(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
 {
-	int x_location_on_board = xChar;
-	int y_location_on_board = yChar;
-    terminal_put(x_location_on_board,y_location_on_board, charToPut);
+	for(int row = 0; row <= MAX_BOARD_Y; row++)
+    {
+        for(int col = 0; col <= MAX_BOARD_X; col++)
+        {
+            int charToPut = BLANK_CHAR;
+            if(gameBoard[row][col] == SHALL_NOT_PASS)
+            {
+                charToPut = WALL_CHAR;
+            }
+            else if(gameBoard[row][col] == WINNER)
+            {
+                charToPut = WIN_CHAR;
+            }
+            else if(gameBoard[row][col] == TELEPORT)
+            {
+                charToPut = TELEPORT_CHAR;
+            }
+            terminal_put(col, row, charToPut);
+        }
+    }
+  	
 
 }
 

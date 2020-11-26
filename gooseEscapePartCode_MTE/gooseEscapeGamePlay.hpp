@@ -34,11 +34,11 @@ const int BLANK_CHAR = int('-');
 const int TELEPORT_CHAR = int('*');
 
 /*
-    Game play function prototypes are give below.
+    Game play function prototypes are give below
 */
 
 // print the game board function protype
-void printGameBoard(int xChar, int yChar, int charToPut);
+void printGameBoard(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X]);
 
 //Updates the private static variables to use inside the function
 void sendGameBoardCoordinates(int teleX1, int teleY1, int teleX2, int teleY2);
