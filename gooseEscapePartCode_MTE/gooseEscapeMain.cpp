@@ -12,15 +12,24 @@ using namespace std;
 //set up the console.   Don't modify this line!
 Console out;
 
-void create_wall(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
-{
 
-    for(int width = 20; width < NUM_BOARD_X - 20; width++)
+void create_walls(int gameBoard[NUM_BOARD_Y][NUM_BOARD_X])
+{
+    // Creates walls at predetermined locations
+    const int MID_BOARD_Y = MAX_BOARD_Y/2, MID_BOARD_X = MAX_BOARD_X/2;
+    for(int width = 21; width < NUM_BOARD_X - 20; width++)
     {
-        const int MID_BOARD = MAX_BOARD_Y/2;
-        gameBoard[MID_BOARD][width] = SHALL_NOT_PASS;
+        gameBoard[MID_BOARD_Y + 2][width] = SHALL_NOT_PASS;
     }
 
+    for(int height = 0; height < 4; height++)
+    {
+        gameBoard[height + 3][MID_BOARD_X - 10] = SHALL_NOT_PASS;
+        gameBoard[height + 3][MID_BOARD_X + 10] = SHALL_NOT_PASS;
+        
+        gameBoard[height + 14][MID_BOARD_X - 25] = SHALL_NOT_PASS;
+        gameBoard[height + 14][MID_BOARD_X + 27] = SHALL_NOT_PASS;
+    }
 }
 
 int main()
@@ -39,10 +48,11 @@ int main()
 */
  	
     //make the player
-	Actor player(PLAYER_CHAR, 10,10);  // you probably don't want to start in the same place each time
+	Actor player(PLAYER_CHAR, 39,5, 0, 0);  // you probably don't want to start in the same place each time
 	
 	//make the monster
-	Actor monster(MONSTER_CHAR, 70,20);
+	Actor monster(MONSTER_CHAR, 39,19, 0, 1);
+	terminal_refresh();
 
     // Declare the array that will hold the game board "map"
     int gameBoard[NUM_BOARD_Y][NUM_BOARD_X] = {0};
@@ -54,35 +64,27 @@ int main()
     make sense to store this information in a file?  Should this code be a
     function as well?
 */
-    create_wall(gameBoard);
+    create_walls(gameBoard);
 
     gameBoard[MAX_BOARD_Y][MAX_BOARD_X/2] = WINNER;
 
+    //Teleporter Locations:
+    int teleX1 = 5, teleY1 = 2, teleX2 = 67, teleY2 = 3;
 
-    
+    gameBoard[teleY1][teleX1] = TELEPORT;
+    gameBoard[teleY2][teleX2] = TELEPORT;
+
+    sendGameBoardCoordinates(teleX1, teleY1, teleX2, teleY2);
+
     // Call the function to print the game board
-    for(int row = 0; row <= MAX_BOARD_Y; row++)
-    {
-        for(int col = 0; col <= MAX_BOARD_X; col++)
-        {
-            int charToPut = BLANK_CHAR;
-            if(gameBoard[row][col] == SHALL_NOT_PASS)
-            {
-                charToPut = WALL_CHAR;
-            }
-            else if(gameBoard[row][col] == WINNER)
-            {
-                charToPut = WIN_CHAR;
-            }
-            printGameBoard(col, row, charToPut);
-        }
-    }
-  	
+    printGameBoard(gameBoard);
+    
 	// Printing the instructions
     out.writeLine("Escape the Goose! " + monster.get_location_string());
 	out.writeLine("Use the arrow keys to move");
 	out.writeLine("If the goose catches you, you lose!");
 	out.writeLine("Be careful! Sometimes the goose can jump through walls!");
+    player.put_actor();
 
 /*
     This is the main game loop.  It continues to let the player give input
@@ -107,6 +109,7 @@ int main()
     	    movePlayer(keyEntered,player,gameBoard);
 
             // call the goose's chase function
+            chasePlayer(monster, player, gameBoard);
             
             // call other functions to do stuff?	    
         }
